@@ -9,6 +9,9 @@ declare(strict_types=1);
  * @contact  group@hyperf.io
  * @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
  */
+use Hyperf\Coroutine\Coroutine;
+use Hyperf\Di\Resolver\ResolverDispatcher;
+
 return [
     'scan' => [
         'paths' => [
@@ -16,6 +19,10 @@ return [
         ],
         'ignore_annotations' => [
             'mixin',
+        ],
+        'class_map' => [
+            Coroutine::class => BASE_PATH . '/app/Kernel/ClassMap/Coroutine.php',
+            ResolverDispatcher::class => BASE_PATH . '/app/Kernel/ClassMap/ResolverDispatcher.php',
         ],
     ],
 ];

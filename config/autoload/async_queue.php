@@ -9,14 +9,18 @@ declare(strict_types=1);
  * @contact  group@hyperf.io
  * @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
  */
-use Hyperf\Cache\Driver\RedisDriver;
-use Hyperf\Codec\Packer\PhpSerializerPacker;
+use Hyperf\AsyncQueue\Driver\RedisDriver;
 
 return [
     'default' => [
         'driver' => RedisDriver::class,
-        'packer' => PhpSerializerPacker::class,
-        'prefix' => 'c:',
-        'skip_cache_results' => [],
+        'channel' => '{queue}',
+        'timeout' => 2,
+        'retry_seconds' => 5,
+        'handle_timeout' => 10,
+        'processes' => 1,
+        'concurrent' => [
+            'limit' => 2,
+        ],
     ],
 ];

@@ -24,9 +24,9 @@ use Psr\Log\LoggerInterface;
 class DbQueryExecutedListener implements ListenerInterface
 {
     /**
-     * @var LoggerInterface
-     */
-    private $logger;
+    * @var LoggerInterface
+    */
+    private LoggerInterface $logger;
 
     public function __construct(ContainerInterface $container)
     {
@@ -60,7 +60,7 @@ class DbQueryExecutedListener implements ListenerInterface
                 }
             }
 
-            $this->logger->info(sprintf('[%s] %s', $event->time, $sql));
+            $this->logger->info(sprintf('[%s:%s] %s', $event->connectionName, $event->time, $sql));
         }
     }
 }
