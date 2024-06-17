@@ -9,8 +9,12 @@ declare(strict_types=1);
  * @contact  group@hyperf.io
  * @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
  */
-use Hyperf\AsyncQueue\Process\ConsumerProcess;
 
-return [
-    ConsumerProcess::class,
-];
+namespace App\Constants;
+
+use BackedEnum;
+
+interface ErrorCodeInterface extends BackedEnum
+{
+    public function getMessage(?array $translate = null): string;
+}
